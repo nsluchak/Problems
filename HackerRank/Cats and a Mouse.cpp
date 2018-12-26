@@ -33,14 +33,18 @@ int main() {
 	freopen("input.txt", "r", stdin); //isn't included in submission
 	freopen("output.txt","w",stdout); //isn't included in submission
 
-	int n, p;
-	cin >> n >> p;
-	if(p%2 == 0)
-		++p;
-	if(n%2 == 0)
-		++n;
-	int count = (p-1)/2 < (n-p)/2 ? (p-1)/2 : (n-p)/2;
-	cout << count << endl;
+	int n, a, b, c;
+	cin >> n;
+	REP(i, n) {
+		cin >> a >> b >> c;
+		int x1 = abs(a-c), x2 = abs(b-c);
+		if(x1 == x2)
+			cout << "Mouse C"<<endl;
+		else if(x1 > x2)
+			cout << "Cat B" <<endl;
+		else
+			cout << "Cat A"<<endl;
+	}
 
 	return 0;
 }

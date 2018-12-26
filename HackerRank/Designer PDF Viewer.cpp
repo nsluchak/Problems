@@ -30,17 +30,26 @@ using namespace std;
 //ifndef ONLINE_JUDGE doesn't work for HackerRank..
 
 int main() {
+
 	freopen("input.txt", "r", stdin); //isn't included in submission
 	freopen("output.txt","w",stdout); //isn't included in submission
 
-	int n, p;
-	cin >> n >> p;
-	if(p%2 == 0)
-		++p;
-	if(n%2 == 0)
-		++n;
-	int count = (p-1)/2 < (n-p)/2 ? (p-1)/2 : (n-p)/2;
-	cout << count << endl;
+	int vals[26] = {};
+	REP(i, 26) {
+		int in;
+		cin>>in;
+		vals[i] = in;
+	}
+
+	string word;
+	int m = 1;
+	cin >> word;
+	for(string::iterator it = word.begin(); it < word.end(); ++it) {
+		int ind = 26-(123 - *it);
+		if(vals[ind] > m)
+			m = vals[ind];
+	}
+	cout << m*word.length() << endl;
 
 	return 0;
 }

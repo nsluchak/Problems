@@ -33,14 +33,14 @@ int main() {
 	freopen("input.txt", "r", stdin); //isn't included in submission
 	freopen("output.txt","w",stdout); //isn't included in submission
 
-	int n, p;
-	cin >> n >> p;
-	if(p%2 == 0)
-		++p;
-	if(n%2 == 0)
-		++n;
-	int count = (p-1)/2 < (n-p)/2 ? (p-1)/2 : (n-p)/2;
-	cout << count << endl;
-
+	int n, k, m = 0;
+	cin>>n>>k;
+	REP(i, n) {
+		int in;
+		cin >> in;
+		if(m < in)
+			m = in;
+	}
+	cout << max(m - k, 0) << endl;
 	return 0;
 }

@@ -33,14 +33,16 @@ int main() {
 	freopen("input.txt", "r", stdin); //isn't included in submission
 	freopen("output.txt","w",stdout); //isn't included in submission
 
-	int n, p;
-	cin >> n >> p;
-	if(p%2 == 0)
-		++p;
-	if(n%2 == 0)
-		++n;
-	int count = (p-1)/2 < (n-p)/2 ? (p-1)/2 : (n-p)/2;
-	cout << count << endl;
-
+	int n, v=0, ct = 0;
+	string path;
+	cin >> n >> path;
+	REP(i, n)
+		if(path[i] == 'U'){
+			if((++v) == 0)
+				++ct;		
+		}
+		else
+			--v;
+	cout << ct << endl;
 	return 0;
 }
