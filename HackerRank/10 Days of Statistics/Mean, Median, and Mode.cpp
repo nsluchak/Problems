@@ -33,21 +33,31 @@ int main() {
 	freopen("input.txt", "r", stdin); //isn't included in submission
 	freopen("output.txt","w",stdout); //isn't included in submission
 
-	int vals[26] = {};
-	REP(i, 26) {
+	double n, sum = 0, max = 0, mode, median, mean;
+	map<int, int> freq;
+	cin >> n;
+	REP(i, n) {
 		int in;
-		cin>>in;
-		vals[i] = in;
+		cin >> in;
+		if(++freq[in] > max || (freq[in] == max && in < mode)) {
+		 mode = in;
+		 max = freq[in];
+		}
+		sum+=in;
 	}
-	string word;
-	int m = 1;
-	cin >> word;
-	for(string::iterator it = word.begin(); it < word.end(); ++it) {
-		int ind = 26-(123 - *it);
-		if(vals[ind] > m)
-			m = vals[ind];
-	}
-	cout << m*word.length() << endl;
+	
+	auto ib = freq.begin();
+	auto ir = freq.rbegin();
+	for(int i = 0; i < n/2;i+=(ib->second)) ib++;
+	for(int i = 0; i < n/2;i+=(ir->second)) ir++;
+
+	double m1=ib->first, m2=ir->first;
+	median = (m1+m2)/2;
+	mean = sum/n;
+
+	cout << mean << endl; // mean
+	cout << median << endl; //median
+	cout << mode << endl; //mode
 
 	return 0;
 }

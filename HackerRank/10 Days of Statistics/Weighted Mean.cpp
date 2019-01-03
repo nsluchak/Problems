@@ -21,6 +21,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
+#include <iomanip>
 #define ll long long
 #define FOR(i, j, n) for(int i = j; i < n; ++ i)
 #define REP(i, n) for(int i = 0; i < n; ++ i)
@@ -33,21 +34,24 @@ int main() {
 	freopen("input.txt", "r", stdin); //isn't included in submission
 	freopen("output.txt","w",stdout); //isn't included in submission
 
-	int vals[26] = {};
-	REP(i, 26) {
+	int n,  sum1 =0, sum2=0;
+	cin >> n;
+	vector<int> nums;
+	REP(i, n) {
 		int in;
-		cin>>in;
-		vals[i] = in;
+		cin >> in;
+		nums.push_back(in);
 	}
-	string word;
-	int m = 1;
-	cin >> word;
-	for(string::iterator it = word.begin(); it < word.end(); ++it) {
-		int ind = 26-(123 - *it);
-		if(vals[ind] > m)
-			m = vals[ind];
+	REP(i, n) {
+		int in;
+		cin >> in;
+		sum1+=nums[i]*in;
+		sum2+=in;
 	}
-	cout << m*word.length() << endl;
+
+	double weighted_mean = (double) sum1/sum2;
+	cout << setprecision(1) << fixed;
+	cout << weighted_mean << endl;
 
 	return 0;
-}
+}	
