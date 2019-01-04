@@ -22,11 +22,9 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <iomanip>
-#include <unordered_map>
 #define ll long long
 #define FOR(i, j, n) for(int i = j; i < n; ++ i)
 #define REP(i, n) for(int i = 0; i < n; ++ i)
-#define MP(a, b) make_pair(a, b)
 
 using namespace std;
 
@@ -37,12 +35,19 @@ int main() {
 	freopen("output.txt","w",stdout); //isn't included in submission
 
 	int n;
+	double mean=0, stdev=0;
+	vector<int> nums;
 	cin >> n;
 	REP(i, n) {
 		int in;
 		cin >> in;
-
+		nums.push_back(in);
+		mean+=in;
 	}
-
+	mean/=n;
+	REP(i, n) stdev+= pow((nums[i]-mean),2);
+	stdev/=n;
+	stdev = sqrt(stdev);
+	cout << setprecision(1) << std::fixed << stdev << endl;
 	return 0;
 }
